@@ -1,12 +1,12 @@
 [
 {
   "directory": "/root/MemoryPoolCache/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/main.dir/main.cpp.o -c /root/MemoryPoolCache/main.cpp",
+  "command": "/usr/bin/g++   -g -std=gnu++11 -o CMakeFiles/main.dir/main.cpp.o -c /root/MemoryPoolCache/main.cpp",
   "file": "/root/MemoryPoolCache/main.cpp"
 },
 {
   "directory": "/root/MemoryPoolCache/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/main.dir/MemoryPool.cpp.o -c /root/MemoryPoolCache/MemoryPool.cpp",
+  "command": "/usr/bin/g++   -g -std=gnu++11 -o CMakeFiles/main.dir/MemoryPool.cpp.o -c /root/MemoryPoolCache/MemoryPool.cpp",
   "file": "/root/MemoryPoolCache/MemoryPool.cpp"
 }
 ]

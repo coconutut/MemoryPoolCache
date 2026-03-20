@@ -24,6 +24,7 @@ struct Span{
     Span* prev;
     Span* next;
     bool is_used;
+    void* startAddr;
     Span() : page_id(0), page_count(0), block_size(0), free_count(0), 
              free_list(nullptr), prev(nullptr), next(nullptr), is_used(false){};
 };
@@ -44,6 +45,8 @@ public:
     Span* head_;
     Span* tail_;
 };
+
+/***********************************************************/
 
 class PageCache{
 private:
@@ -67,6 +70,8 @@ public:
     void DeallocatePages(Span* span);
     //获取page_size_
     size_t GetPageSize();
+    //通过地址查询
+    Span* FindSpanByAddr(void* start);
 private:
     //向系统申请n页内存（跨平台）
     void* SystemAllocate(size_t n);
@@ -76,6 +81,8 @@ private:
     void mergeSpan(Span* span);
 };
 
+/***********************************************************/
+
 class CentralCache{
 private:
     static const size_t kAlign = 8;
@@ -83,6 +90,7 @@ private:
     static const size_t kFreeListCount = kMaxSmallObjSize / kAlign;
     SpanList span_lists_[kFreeListCount];
     std::mutex mutexes_[kFreeListCount];
+    //显性禁止拷贝构造、赋值构造
     CentralCache() = default;
     CentralCache& operator=(const CentralCache&) = delete;
     CentralCache(const CentralCache&) = delete;
@@ -91,4 +99,35 @@ public:
     static CentralCache& GetInstance();
     //批量申请内存块
     void* AllocateBatch(size_t size, size_t batch_num);
+    //批量归还内存块
+    void DeallocateBatch(size_t size, void* start, size_t count);
+};
+
+/***********************************************************/
+
+class ThreadCache{
+private:
+    static const size_t kAlign = 8;
+    static const size_t kMaxSmallObjectSize = 4096;
+    static const size_t kFreeListCount = kMaxSmallObjectSize / kAlign;
+    //空闲链表节点（嵌入式）
+    struct FreeListNode{
+        FreeListNode* next;
+    };
+    //空闲链表数组
+    FreeListNode* free_lists_[kFreeListCount] = {nullptr};
+public:
+    //分配size大小的内存
+    void* Allocate(size_t size);
+    //释放size大小的内存
+    void Deallocate(void* start, size_t size);
+private:
+    //从中心缓存区申请size大小的空间
+    void FetchFromCentralCache(size_t index, size_t size);
+    //根据申请size的大小返回申请的数量
+    size_t CalcBatchNum(size_t size) const;
+    //获取free_lists_下的空闲数量
+    size_t GetListLength(FreeListNode* head);
+    //将batch_num数量的size空间返回给CentralCache
+    void ReleaseToCentralCache(size_t index, size_t size, size_t batch_num);
 };
