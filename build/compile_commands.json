@@ -1,12 +1,27 @@
 [
 {
   "directory": "/root/MemoryPoolCache/build",
-  "command": "/usr/bin/g++   -g -std=gnu++11 -o CMakeFiles/main.dir/main.cpp.o -c /root/MemoryPoolCache/main.cpp",
+  "command": "/usr/bin/g++  -I/root/MemoryPoolCache -g -std=gnu++11 -o CMakeFiles/main.dir/main.cpp.o -c /root/MemoryPoolCache/main.cpp",
   "file": "/root/MemoryPoolCache/main.cpp"
 },
 {
   "directory": "/root/MemoryPoolCache/build",
-  "command": "/usr/bin/g++   -g -std=gnu++11 -o CMakeFiles/main.dir/MemoryPool.cpp.o -c /root/MemoryPoolCache/MemoryPool.cpp",
-  "file": "/root/MemoryPoolCache/MemoryPool.cpp"
+  "command": "/usr/bin/g++  -I/root/MemoryPoolCache -g -std=gnu++11 -o CMakeFiles/main.dir/SpanList/SpanList.cpp.o -c /root/MemoryPoolCache/SpanList/SpanList.cpp",
+  "file": "/root/MemoryPoolCache/SpanList/SpanList.cpp"
+},
+{
+  "directory": "/root/MemoryPoolCache/build",
+  "command": "/usr/bin/g++  -I/root/MemoryPoolCache -g -std=gnu++11 -o CMakeFiles/main.dir/PageCache/PageCache.cpp.o -c /root/MemoryPoolCache/PageCache/PageCache.cpp",
+  "file": "/root/MemoryPoolCache/PageCache/PageCache.cpp"
+},
+{
+  "directory": "/root/MemoryPoolCache/build",
+  "command": "/usr/bin/g++  -I/root/MemoryPoolCache -g -std=gnu++11 -o CMakeFiles/main.dir/CentralCache/CentralCache.cpp.o -c /root/MemoryPoolCache/CentralCache/CentralCache.cpp",
+  "file": "/root/MemoryPoolCache/CentralCache/CentralCache.cpp"
+},
+{
+  "directory": "/root/MemoryPoolCache/build",
+  "command": "/usr/bin/g++  -I/root/MemoryPoolCache -g -std=gnu++11 -o CMakeFiles/main.dir/ThreadCache/ThreadCache.cpp.o -c /root/MemoryPoolCache/ThreadCache/ThreadCache.cpp",
+  "file": "/root/MemoryPoolCache/ThreadCache/ThreadCache.cpp"
 }
 ]

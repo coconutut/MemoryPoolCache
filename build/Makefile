@@ -129,29 +129,101 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-MemoryPool.o: MemoryPool.cpp.o
-.PHONY : MemoryPool.o
+CentralCache/CentralCache.o: CentralCache/CentralCache.cpp.o
+.PHONY : CentralCache/CentralCache.o
 
 # target to build an object file
-MemoryPool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/MemoryPool.cpp.o
-.PHONY : MemoryPool.cpp.o
+CentralCache/CentralCache.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/CentralCache/CentralCache.cpp.o
+.PHONY : CentralCache/CentralCache.cpp.o
 
-MemoryPool.i: MemoryPool.cpp.i
-.PHONY : MemoryPool.i
+CentralCache/CentralCache.i: CentralCache/CentralCache.cpp.i
+.PHONY : CentralCache/CentralCache.i
 
 # target to preprocess a source file
-MemoryPool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/MemoryPool.cpp.i
-.PHONY : MemoryPool.cpp.i
+CentralCache/CentralCache.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/CentralCache/CentralCache.cpp.i
+.PHONY : CentralCache/CentralCache.cpp.i
 
-MemoryPool.s: MemoryPool.cpp.s
-.PHONY : MemoryPool.s
+CentralCache/CentralCache.s: CentralCache/CentralCache.cpp.s
+.PHONY : CentralCache/CentralCache.s
 
 # target to generate assembly for a file
-MemoryPool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/MemoryPool.cpp.s
-.PHONY : MemoryPool.cpp.s
+CentralCache/CentralCache.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/CentralCache/CentralCache.cpp.s
+.PHONY : CentralCache/CentralCache.cpp.s
+
+PageCache/PageCache.o: PageCache/PageCache.cpp.o
+.PHONY : PageCache/PageCache.o
+
+# target to build an object file
+PageCache/PageCache.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PageCache/PageCache.cpp.o
+.PHONY : PageCache/PageCache.cpp.o
+
+PageCache/PageCache.i: PageCache/PageCache.cpp.i
+.PHONY : PageCache/PageCache.i
+
+# target to preprocess a source file
+PageCache/PageCache.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PageCache/PageCache.cpp.i
+.PHONY : PageCache/PageCache.cpp.i
+
+PageCache/PageCache.s: PageCache/PageCache.cpp.s
+.PHONY : PageCache/PageCache.s
+
+# target to generate assembly for a file
+PageCache/PageCache.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/PageCache/PageCache.cpp.s
+.PHONY : PageCache/PageCache.cpp.s
+
+SpanList/SpanList.o: SpanList/SpanList.cpp.o
+.PHONY : SpanList/SpanList.o
+
+# target to build an object file
+SpanList/SpanList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/SpanList/SpanList.cpp.o
+.PHONY : SpanList/SpanList.cpp.o
+
+SpanList/SpanList.i: SpanList/SpanList.cpp.i
+.PHONY : SpanList/SpanList.i
+
+# target to preprocess a source file
+SpanList/SpanList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/SpanList/SpanList.cpp.i
+.PHONY : SpanList/SpanList.cpp.i
+
+SpanList/SpanList.s: SpanList/SpanList.cpp.s
+.PHONY : SpanList/SpanList.s
+
+# target to generate assembly for a file
+SpanList/SpanList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/SpanList/SpanList.cpp.s
+.PHONY : SpanList/SpanList.cpp.s
+
+ThreadCache/ThreadCache.o: ThreadCache/ThreadCache.cpp.o
+.PHONY : ThreadCache/ThreadCache.o
+
+# target to build an object file
+ThreadCache/ThreadCache.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ThreadCache/ThreadCache.cpp.o
+.PHONY : ThreadCache/ThreadCache.cpp.o
+
+ThreadCache/ThreadCache.i: ThreadCache/ThreadCache.cpp.i
+.PHONY : ThreadCache/ThreadCache.i
+
+# target to preprocess a source file
+ThreadCache/ThreadCache.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ThreadCache/ThreadCache.cpp.i
+.PHONY : ThreadCache/ThreadCache.cpp.i
+
+ThreadCache/ThreadCache.s: ThreadCache/ThreadCache.cpp.s
+.PHONY : ThreadCache/ThreadCache.s
+
+# target to generate assembly for a file
+ThreadCache/ThreadCache.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ThreadCache/ThreadCache.cpp.s
+.PHONY : ThreadCache/ThreadCache.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -186,9 +258,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
-	@echo "... MemoryPool.o"
-	@echo "... MemoryPool.i"
-	@echo "... MemoryPool.s"
+	@echo "... CentralCache/CentralCache.o"
+	@echo "... CentralCache/CentralCache.i"
+	@echo "... CentralCache/CentralCache.s"
+	@echo "... PageCache/PageCache.o"
+	@echo "... PageCache/PageCache.i"
+	@echo "... PageCache/PageCache.s"
+	@echo "... SpanList/SpanList.o"
+	@echo "... SpanList/SpanList.i"
+	@echo "... SpanList/SpanList.s"
+	@echo "... ThreadCache/ThreadCache.o"
+	@echo "... ThreadCache/ThreadCache.i"
+	@echo "... ThreadCache/ThreadCache.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

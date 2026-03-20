@@ -8,7 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/root/MemoryPoolCache/MemoryPool.cpp" "CMakeFiles/main.dir/MemoryPool.cpp.o" "gcc" "CMakeFiles/main.dir/MemoryPool.cpp.o.d"
+  "/root/MemoryPoolCache/CentralCache/CentralCache.cpp" "CMakeFiles/main.dir/CentralCache/CentralCache.cpp.o" "gcc" "CMakeFiles/main.dir/CentralCache/CentralCache.cpp.o.d"
+  "/root/MemoryPoolCache/PageCache/PageCache.cpp" "CMakeFiles/main.dir/PageCache/PageCache.cpp.o" "gcc" "CMakeFiles/main.dir/PageCache/PageCache.cpp.o.d"
+  "/root/MemoryPoolCache/SpanList/SpanList.cpp" "CMakeFiles/main.dir/SpanList/SpanList.cpp.o" "gcc" "CMakeFiles/main.dir/SpanList/SpanList.cpp.o.d"
+  "/root/MemoryPoolCache/ThreadCache/ThreadCache.cpp" "CMakeFiles/main.dir/ThreadCache/ThreadCache.cpp.o" "gcc" "CMakeFiles/main.dir/ThreadCache/ThreadCache.cpp.o.d"
   "/root/MemoryPoolCache/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
   )
 
