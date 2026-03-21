@@ -28,7 +28,9 @@ public:
     //判空
     bool Empty() const;
     //工具函数AlignUp
-    static size_t AlignUp(size_t size, size_t Align);
+    inline static size_t AlignUp(size_t size, size_t Align){
+        return (size + Align - 1) & ~(Align - 1);
+    }
     //接口
     Span* GetHead() const;
     Span* GetTail() const;

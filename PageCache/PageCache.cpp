@@ -15,6 +15,25 @@ PageCache& PageCache::GetInstance(){
     return instance;
 }
 
+void* PageCache::SystemAllocate(size_t n){
+    size_t total_size = n * page_size_;
+#ifdef _WIN32
+    return VirtualAlloc(nullptr, total_size，MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+#else
+    return mmap(nullptr, total_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+#endif
+}
+
+void PageCache::SystemDeallocate(void* ptr, size_t n){
+    size_t total_size = n * page_size_;
+#ifdef _WIN32
+    VirtualFree(ptr, 0, MEM_RELEASE);
+#else
+    munmap(ptr, total_size);
+#endif
+}
+
+//分配n页Span
 Span* PageCache::AllocatePages(size_t n){
     if(n == 0 || n > kMaxPageCount){
         throw std::bad_alloc();
@@ -34,7 +53,9 @@ Span* PageCache::AllocatePages(size_t n){
         if(!span_lists_[i].Empty()){
             Span* bigSpan = span_lists_[i].PopFront();
             Span* smallSpan = new Span();
+            bigSpan->startAddr = reinterpret_cast<void*>(bigSpan->page_id * page_size_);
             smallSpan->page_id = bigSpan->page_id;
+            smallSpan->startAddr = reinterpret_cast<void*>(smallSpan->page_id * page_size_);
             smallSpan->page_count = n;
             smallSpan->is_used = true;
             //剩余Span
@@ -64,6 +85,7 @@ Span* PageCache::AllocatePages(size_t n){
     return span;
 }
 
+//释放一个Span空间
 void PageCache::DeallocatePages(Span* span){
     if(!span || !span->is_used) return;
     std::lock_guard<std::mutex> lock(mutex_);
@@ -71,7 +93,7 @@ void PageCache::DeallocatePages(Span* span){
     span->free_count = 0;
     span->free_list = nullptr;
     //合并相邻的span
-    mergeSpan(span);
+    span = mergeSpan(span);
     //插入对应的span_list
     span_lists_[span->page_count].PushBack(span);
     //移除页号映射
@@ -80,25 +102,7 @@ void PageCache::DeallocatePages(Span* span){
     }
 }
 
-void* PageCache::SystemAllocate(size_t n){
-    size_t total_size = n * page_size_;
-#ifdef _WIN32
-    return VirtualAlloc(nullptr, total_size，MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
-#else
-    return mmap(nullptr, total_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-#endif
-}
-
-void PageCache::SystemDeallocate(void* ptr, size_t n){
-    size_t total_size = n * page_size_;
-#ifdef _WIN32
-    VirtualFree(ptr, 0, MEM_RELEASE);
-#else
-    munmap(ptr, total_size);
-#endif
-}
-
-void PageCache::mergeSpan(Span* span){
+Span* PageCache::mergeSpan(Span* span){
     //合并前一个span
     size_t prev_page_tail = span->page_id - 1;
     auto prev_page_it = page_id_to_span_.find(prev_page_tail);
@@ -128,6 +132,7 @@ void PageCache::mergeSpan(Span* span){
             }
         }
     }
+    return span;
 }
 
 size_t PageCache::GetPageSize(){

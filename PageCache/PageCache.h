@@ -35,6 +35,6 @@ private:
     //向系统释放n页内存（跨平台）
     void SystemDeallocate(void* ptr, size_t n);
     //合并相邻的span
-    void mergeSpan(Span* span);
+    Span* mergeSpan(Span* span);
 };
 

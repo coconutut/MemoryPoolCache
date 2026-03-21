@@ -40,10 +40,6 @@ bool SpanList::Empty() const{
     return head_->next == tail_;
 }
 
-inline size_t SpanList::AlignUp(size_t size, size_t align){
-    return (size + align - 1) & ~(align - 1);
-}
-
 Span* SpanList::GetHead() const{
     return head_;
 }
